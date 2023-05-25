@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Code\C\DataStruct_Alg\002_ADD_TWO_NUM\build\CMakeFiles\4fcee5d293159b472f00ebafe29187c2\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FCA69AB0-7BE8-3AC0-8395-5C4BC55B47B1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
