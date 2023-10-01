@@ -1,3 +1,10 @@
-# 这是一段文本
-我增加了一些东西，为了测试git diff 与远程的装态
+# C
+
+> 个人学 c 语言的仓库
+
+- CCore ：  C primer plus 
+- CStudy : C 基础学习
+- DataStruct_Alg: C数据结构与算法
+
+
 
