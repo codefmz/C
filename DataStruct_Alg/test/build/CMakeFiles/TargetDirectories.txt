@@ -1,3 +1,0 @@
-/usr/fmw/C/DataStruct_Alg/test/build/CMakeFiles/rebuild_cache.dir
-/usr/fmw/C/DataStruct_Alg/test/build/CMakeFiles/edit_cache.dir
-/usr/fmw/C/DataStruct_Alg/test/build/CMakeFiles/CList.dir
