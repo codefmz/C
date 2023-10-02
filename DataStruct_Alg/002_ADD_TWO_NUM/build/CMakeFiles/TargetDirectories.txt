@@ -1,4 +1,0 @@
-E:/Code/C/DataStruct_Alg/002_ADD_TWO_NUM/build/CMakeFiles/addTwoNum.dir
-E:/Code/C/DataStruct_Alg/002_ADD_TWO_NUM/build/CMakeFiles/ALL_BUILD.dir
-E:/Code/C/DataStruct_Alg/002_ADD_TWO_NUM/build/CMakeFiles/ZERO_CHECK.dir
-E:/Code/C/DataStruct_Alg/002_ADD_TWO_NUM/build/src/CMakeFiles/src.dir
