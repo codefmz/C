@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../../Util/include/util.h
+stdio.h
+-
+stdlib.h
+-
+
+/usr/fmw/C/DataStruct_Alg/test/DataStruct/list_test.c
+util.h
+/usr/fmw/C/DataStruct_Alg/test/DataStruct/util.h
+stdio.h
+-
+string.h
+-
+

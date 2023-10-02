@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/CList.dir/DataStruct/list_test.c.o  -o bin/CList 
