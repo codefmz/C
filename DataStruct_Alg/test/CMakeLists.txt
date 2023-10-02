@@ -9,8 +9,6 @@ set(CMAKE_C_STANDARD 11)
 
 set(UTIL ../../Util/include)
 
-set(LISTTEST ./DataStruct)
-
 set(LISTINCLUDE ../src/DataStruct/List/src)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
@@ -23,7 +21,11 @@ include_directories(${LISTINCLUDE})
 
 
 # 收集源文件
-set(LISTFILE ./DataStruct/list_test.c)
+set(LISTTESTFILE ./DataStruct/list_test.c)
+
+set(STACKTESTFILE ./DataStruct/stack_test.c)
 
 # 生成可执行文件
-add_executable(CList ${LISTFILE})
+add_executable(CList ${LISTTESTFILE})
+
+add_executable(Stack ${STACKTESTFILE})

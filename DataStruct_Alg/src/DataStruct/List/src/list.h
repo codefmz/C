@@ -6,53 +6,47 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct myNode {
+typedef struct myListNode {
     uintptr_t data;
     uint32_t dataSize;
-    struct myNode* next;
-    struct myNode* pre;
-} Node;
+    uint32_t reserved;
+    struct myListNode* next;
+    struct myListNode* pre;
+} ListNode;
 
 typedef int (*Equal)(const void* a, const void* b);
 
 typedef struct
 {
-    Node* head; /* 空的头节点，占位用到 */
-    Node* end; /* 最后一个节点，方面快速插入用到 */
+    ListNode head; /* 空的头节点，占位用到 */
+    ListNode* end; /* 最后一个节点，方面快速插入用到 */
     Equal equal;
     uint32_t size;
     uint32_t reseved;
 } List;
 
-List* CreateList()
+void CreateList(List* list)
 {
-    List* list = (List*)malloc(sizeof(List));
     memset(list, 0, sizeof(List));
-    list->head = (Node*)malloc(sizeof(Node));
-    memset(list->head, 0, sizeof(Node));
-    return list;
 }
 
-List* CreateListWithEqual(Equal equal)
+void CreateListWithEqual(List* list, Equal equal)
 {
-    List* list = (List*)malloc(sizeof(List));
     memset(list, 0, sizeof(List));
-    list->head = (Node*)malloc(sizeof(Node));
     list->equal = equal;
-    memset(list->head, 0, sizeof(Node));
-    return list;
 }
 
-void FreeList(List* list)
+void MakeEmpty(List* list)
 {
-    Node* p = list->head;
+    ListNode* p = list->head.next;
     while (p != NULL) {
-        Node* node = p->next;
+        ListNode* node = p->next;
         free((void*)p->data);
         free(p);
         p = node;
     }
-    free(list);
+    list->end = NULL;
+    list->size = 0;
 }
 
 int IsEmpty(List* list)
@@ -60,9 +54,9 @@ int IsEmpty(List* list)
     return list->size == 0;
 }
 
-Node* Find(const void* data, List* list)
+ListNode* FindList(const void* data, List* list)
 {
-    Node* p = list->head->next;
+    ListNode* p = list->head.next;
     if (list->equal == NULL) {
         printf("please set euqal of list!");
         return NULL;
@@ -79,9 +73,9 @@ Node* Find(const void* data, List* list)
 
 void PushBack(const void* data, uint32_t dataSize, List* list)
 {
-    Node* p = list->size == 0 ? list->head : list->end;
-    Node* node = (Node*)malloc(sizeof(Node));
-    memset(node, 0, sizeof(Node));
+    ListNode* p = list->size == 0 ? &(list->head) : list->end;
+    ListNode* node = (ListNode*)malloc(sizeof(ListNode));
+    memset(node, 0, sizeof(ListNode));
     void* newData = malloc(dataSize);
     memset(newData, 0, dataSize);
     memcpy(newData, data, dataSize);
@@ -95,16 +89,16 @@ void PushBack(const void* data, uint32_t dataSize, List* list)
 
 void PushFront(const void* data, uint32_t dataSize, List* list)
 {
-    Node* p = list->head;
-    Node* node = (Node*)malloc(sizeof(Node));
-    memset(node, 0, sizeof(Node));
+    ListNode* p = &(list->head);
+    ListNode* node = (ListNode*)malloc(sizeof(ListNode));
+    memset(node, 0, sizeof(ListNode));
     void* newData = malloc(dataSize);
     memset(newData, 0, dataSize);
     memcpy(newData, data, dataSize);
     node->data = (uintptr_t)newData;
     node->dataSize = dataSize;
     node->pre = p;
-    Node* front = p->next;
+    ListNode* front = p->next;
     node->next = front;
     if (front != NULL) {
         front->pre = node;
@@ -113,49 +107,47 @@ void PushFront(const void* data, uint32_t dataSize, List* list)
     ++list->size;
 }
 
-Node* Front(List* list)
+ListNode* Front(List* list)
 {
-    return list->head->next;
+    return list->head.next;
 }
 
-Node* Back(List* list)
+ListNode* Back(List* list)
 {
     return list->end;
 }
 
-void RemoveFront(List* list)
+void RemoveFront(List* list, ListNode** pNode)
 {
-    Node* p = Front(list);
+    ListNode* p = Front(list);
     if (p == NULL) {
         return;
     }
-    list->head->next = p->next;
-    p->next->pre = list->head;
-    free((void*)p->data);
-    free(p);
+    list->head.next = p->next;
+    p->next->pre = &(list->head);
+    *pNode = p;
     --list->size;
 }
 
-void RemoveBack(List* list)
+void RemoveBack(List* list, ListNode** pNode)
 {
-    Node* p = Back(list);
+    ListNode* p = Back(list);
     if (p == NULL) {
         return;
     }
-    Node* pre = p->pre;
+    ListNode* pre = p->pre;
     pre->next = NULL;
     list->end = pre;
-    free((void*)p->data);
-    free(p);
+    *pNode = p;
     --list->size;
 }
 
 void Reverse(List* list)
 {
-    Node* midNode;
-    Node* temp;
-    Node* head = list->head;
-    Node* backNode = head->next;
+    ListNode* midNode;
+    ListNode* temp;
+    ListNode* head = &(list->head);
+    ListNode* backNode = head->next;
     if (backNode == NULL) {
         return;
     }
@@ -172,10 +164,10 @@ void Reverse(List* list)
     }
 }
 
-typedef int (*TreverseFunc)(Node* node);
+typedef int (*TreverseFunc)(ListNode* node);
 void Traverse(List* list, TreverseFunc func)
 {
-    Node* node = Front(list);
+    ListNode* node = Front(list);
     while (node != NULL) {
         if (func(node) == 0) {
             return;
@@ -183,4 +175,5 @@ void Traverse(List* list, TreverseFunc func)
         node = node->next;
     }
 }
+
 #endif
