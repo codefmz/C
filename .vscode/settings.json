@@ -11,6 +11,7 @@
         "string_view": "c",
         "initializer_list": "c",
         "utility": "c",
-        "stack.h": "c"
+        "stack.h": "c",
+        "stdbool.h": "c"
     }
 }
