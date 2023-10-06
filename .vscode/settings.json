@@ -4,6 +4,16 @@
         "string.h": "c",
         "stdio.h": "c",
         "stddef.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "util.h": "c",
+        "stdint.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "stack.h": "c",
+        "stdbool.h": "c",
+        "str.h": "c",
+        "ratio": "c"
     }
 }
