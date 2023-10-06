@@ -1,4 +1,4 @@
-﻿{
+{
   "files.associations": {
     "list.h": "c",
     "string.h": "c",
@@ -14,6 +14,8 @@
     "stack.h": "c",
     "stdbool.h": "c",
     "str.h": "c",
-    "ratio": "c"
+    "ratio": "c",
+    "cmath": "cpp",
+    "complex": "cpp"
   }
 }
