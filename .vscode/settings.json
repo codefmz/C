@@ -16,6 +16,12 @@
     "str.h": "c",
     "ratio": "c",
     "cmath": "cpp",
-    "complex": "cpp"
+    "complex": "cpp",
+    "bitset": "cpp",
+    "regex": "cpp",
+    "valarray": "cpp",
+    "priority_queue.h": "c"
   }
+
+
 }

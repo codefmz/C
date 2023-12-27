@@ -165,4 +165,14 @@ void Traverse(List* list, TreverseFunc func)
     }
 }
 
+ListNode* FindList(const void* a, List* list)
+{
+    ListNode* node = Front(list);
+    while (node != NULL) {
+        if (list->equal(a, (void *)node->data) == 0) {
+            return node;
+        }
+        node = node->next;
+    }
+}
 #endif

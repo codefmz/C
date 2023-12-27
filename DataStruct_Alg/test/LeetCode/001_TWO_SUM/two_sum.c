@@ -1,5 +1,7 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct {
     int val;
     int index;
@@ -36,7 +38,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     return results;
 }
 
-int main(int argc, char** argv)
+int g_cnt = 0;
+void testTwoNum()
 {
     // int nums[] = {-1, -2, -3, -4, -5};
     // int target = -8;
@@ -46,6 +49,11 @@ int main(int argc, char** argv)
     int size = sizeof(nums) / sizeof(*nums);
     int target = 6;
     int count = 0;
+    int hh = g_cnt;
+    for (int i = 0; i < 19; ++i) {
+        printf("i = %d", i);
+    }
+
     int* indexes = twoSum(nums, size, target, &count);
     if (indexes != NULL) {
         printf("%d %d\n", indexes[0], indexes[1]);
@@ -53,5 +61,41 @@ int main(int argc, char** argv)
         printf("Not found\n");
     }
     free(indexes);
+}
+
+// 线程函数
+void* thread_function(void* arg)
+{
+    int thread_id = *(int*)arg;
+    printf("Thread ID: %d\n", thread_id);
+    // 执行线程任务
+    int hh = g_cnt;
+    // 退出线程
+    pthread_exit(NULL);
+}
+
+int main(int argc, char** argv)
+{
+    pthread_t thread_id;
+    int thread_arg = 123; // 示例线程参数
+
+    // 创建线程
+    int ret = pthread_create(&thread_id, NULL, thread_function, (void*)&thread_arg);
+    if (ret != 0) {
+        printf("Error creating thread; return code from pthread_create() is %d\n", ret);
+        exit(EXIT_FAILURE);
+    }
+    g_cnt = 100;
+    int hh = g_cnt;
+    testTwoNum();
+    // 主线程等待新创建的线程结束
+    ret = pthread_join(thread_id, NULL);
+    if (ret != 0) {
+        printf("Error joining thread; return code from pthread_join() is %d\n", ret);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Thread joined\n");
+
     return 0;
 }

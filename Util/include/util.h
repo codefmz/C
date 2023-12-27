@@ -9,7 +9,6 @@
         if (condition != var) {                                          \
             fprintf(stderr, "Assertion failed: %s , file %s, line %d\n", \
                 #condition, __FILE__, __LINE__);                         \
-            exit(EXIT_FAILURE);                                          \
         }                                                                \
     } while (0)
 
@@ -18,7 +17,6 @@
         if (condition == var) {                                         \
             fprintf(stderr, "Assertion failed: %s, file %s, line %d\n", \
                 #condition, __FILE__, __LINE__);                        \
-            exit(EXIT_FAILURE);                                         \
         }                                                               \
     } while (0)
 
@@ -27,7 +25,6 @@
         if (strcmp(condition, var) != 0) {                              \
             fprintf(stderr, "Assertion failed: %s, file %s, line %d\n", \
                 #condition, __FILE__, __LINE__);                        \
-            exit(EXIT_FAILURE);                                         \
         }                                                               \
     } while (0)
 

@@ -6,6 +6,9 @@ get_property(SELF_DYNAMIC_MUL GLOBAL PROPERTY "SELF_DYNAMIC_MUL_INNER")
 
 include_directories(./comm)
 
+
+message("SELF_DYNAMIC_DIV = :" ${SELF_DYNAMIC_DIV})
+
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 add_library(self_dynamic_dll SHARED ${SELF_DYNAMIC_DIV} ${SELF_DYNAMIC_MUL})
 
