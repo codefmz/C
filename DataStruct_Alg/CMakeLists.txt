@@ -11,17 +11,16 @@ set(target_exe_name "${VAR_NAME}_exe")
 set(SRC "${target_project_name}_src")
 message("target_project_name = ${target_project_name} SRC = ${SRC}")
 get_property(SRC GLOBAL PROPERTY ${SRC}) #获取全局的属性
-get_property(tree_include GLOBAL PROPERTY "tree_include") #获取全局的属性
-get_property(list_include GLOBAL PROPERTY "list_include")
+get_property(data_struct_include GLOBAL PROPERTY "data_struct_include") #获取全局的属性
 
-
-message("list_include = ${list_include}")
+message("data_struct_include = ${data_struct_include}")
 
 include_directories(
     ./config
     ../Util/include
-    ${tree_include}
-    ${list_include}
+    ${data_struct_include}/Tree
+    ${data_struct_include}/BitMap
+    ${data_struct_include}/List
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -31,7 +30,7 @@ add_custom_target(${target_project_name}
     COMMAND echo "build ${target_project_name} start..."
     COMMAND rm -rf ./${target_project_name}
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${target_exe_name}
-    COMMAND cp ../bin/${target_project_name} ../${target_project_name}
+    COMMAND cp ../bin/${target_exe_name} ../${target_project_name}
     COMMAND echo "build ${target_project_name} end..."
 )
 

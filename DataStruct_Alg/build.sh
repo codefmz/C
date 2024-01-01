@@ -1,3 +1,5 @@
+machine_type=$(uname -m)
+echo "Machine type is: $machine_type"
 if [ $# != 1 ];
 then
     echo "Invalid argument!"
