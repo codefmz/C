@@ -7,6 +7,7 @@
 
 int main(int argc, char** argv)
 {
+
     int fd;
     fd = open("/dev/test", O_RDWR); // 我们的设备挂载在/dev/test处
     if (fd < 0) {
