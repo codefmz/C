@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "node.h": "c",
+        "sstream": "c",
+        "regex": "c"
+    }
+}

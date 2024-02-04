@@ -29,4 +29,5 @@
     } while (0)
 
 #define ALWAYSINLINE __attribute__((always_inline))
+
 #endif
