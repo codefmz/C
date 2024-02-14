@@ -2,51 +2,30 @@ cmake_minimum_required(VERSION 3.5.0)
 project(DataStruct VERSION 0.1.0)
 
 set(CMAKE_C_FLAGS "-g -std=c99 -pthread ${CMAKE_C_FLAGS}")
-
-add_subdirectory(src/DataStruct)
-add_subdirectory(test)
-# add_subdirectory(../Util)
-set(target_project_name ${VAR_NAME})
-set(target_exe_name "${VAR_NAME}_exe")
-set(SRC "${target_project_name}_src")
-message("target_project_name = ${target_project_name} SRC = ${SRC}")
-get_property(SRC GLOBAL PROPERTY ${SRC}) #获取全局的属性
-get_property(data_struct_include GLOBAL PROPERTY "data_struct_include") #获取全局的属性
-
-message("data_struct_include = ${data_struct_include}")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 include_directories(
-    ./config
-    ../Util/include
-    ${data_struct_include}/Tree
-    ${data_struct_include}/BitMap
-    ${data_struct_include}/List
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/gtest
+    ${PROJECT_SOURCE_DIR}/include/util
 )
+
+add_subdirectory(src/DataStruct)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-add_executable(${target_exe_name} ${SRC})
 
-add_custom_target(${target_project_name}
-    COMMAND echo "build ${target_project_name} start..."
-    COMMAND rm -rf ./${target_project_name}
-    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${target_exe_name}
-    COMMAND cp ../bin/${target_exe_name} ../${target_project_name}
-    COMMAND echo "build ${target_project_name} end..."
+link_directories(
+    ${PROJECT_SOURCE_DIR}/lib
+    ${PROJECT_SOURCE_DIR}/lib/util/
+    ${PROJECT_SOURCE_DIR}/lib/gtest/
 )
 
-add_custom_target(cls
-    COMMAND rm -rf ./* ../bin/*
-)
+enable_testing()
 
-#如果变量定义过，则不处理，如果未定义过，则设置默认值 “option” 是一个描述符
-# option(USE_MY_STATIC_OUT "option" ON)
-
-# target_link_libraries(${PROJECT_NAME} out_static self_static_lib self_dynamic_dll)
-
-#如果变量定义过，则不处理，如果未定义过，则设置默认值 “option” 是一个描述符
-option(USE_MY_PRIORITY_QUEUE "option" OFF)
-
-configure_file (
-    "${PROJECT_SOURCE_DIR}/config/config.h.in"
-    "${PROJECT_SOURCE_DIR}/config/config_my.h"
+add_executable(ringbuffer_test test/DataStruct/ringbuffer_test.cc)
+target_link_libraries(ringbuffer_test rb_static util_static gtest_main gtest)
+add_custom_command(TARGET ringbuffer_test
+    COMMAND echo "target ringbuffer"
 )

@@ -1,1 +1,1 @@
-set_property(GLOBAL PROPERTY data_struct_include ${CMAKE_CURRENT_SOURCE_DIR})
+add_subdirectory(RingBuffer)

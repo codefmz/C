@@ -2,6 +2,8 @@
     "files.associations": {
         "node.h": "c",
         "sstream": "c",
-        "regex": "c"
+        "regex": "c",
+        "log.h": "c",
+        "gtest.h": "c"
     }
 }

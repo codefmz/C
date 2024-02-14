@@ -8,17 +8,17 @@ extern "C" {
 #endif
 
 typedef enum logLevel {
-    INFO = 1,
-    ERROR = 2,
+    INFO = 0,
+    ERROR = 1,
 } LOG_LEVEL;
-
-LogImp g_logImp = Log2Control;
 
 typedef void (*LogImp)(LOG_LEVEL type, int32_t line, const char* fun, const char* file, char* fmt, ...);
 
 void Log2File(LOG_LEVEL level, int32_t line, const char* fun, const char* file, char* fmt, ...);
 
 void Log2Control(LOG_LEVEL level, int32_t line, const char* fun, const char* file, char* fmt, ...);
+
+extern LogImp g_logImp;
 
 #define LOG_INFO(fmt, ...)                                                    \
     {                                                                         \
