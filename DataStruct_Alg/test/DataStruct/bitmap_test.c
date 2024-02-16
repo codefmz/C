@@ -1,4 +1,4 @@
-#include "util.h"
+#include "assert.h"
 #include <bitmap.h>
 
 int main(int argc, char** argv)

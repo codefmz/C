@@ -1,5 +1,6 @@
 machine_type=$(uname -m)
 echo "Machine type is: $machine_type"
+
 if [ $# != 1 ];
 then
     echo "Invalid argument!"
@@ -21,10 +22,11 @@ else
     sh ../Util/build.sh $script_dir
 fi
 
+target=$1
 
-# cmake -DVAR_NAME="$MakeProject" ..
+echo "compile target - ${target} "
+
 cd build/
 cmake ..
-# echo "project $0 make $1"
-make ringbuffer_test
+make ${target}
 rm -rf ./*

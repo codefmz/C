@@ -1,1 +1,3 @@
 add_subdirectory(RingBuffer)
+add_subdirectory(RadixTree)
+add_subdirectory(Tree)

@@ -4,6 +4,22 @@
         "sstream": "c",
         "regex": "c",
         "log.h": "c",
-        "gtest.h": "c"
+        "gtest.h": "c",
+        "cstring": "c",
+        "base.h": "c",
+        "error.h": "c",
+        "radixtree.h": "c",
+        "binarytree.h": "c",
+        "variant": "c",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "valarray": "c",
+        "assert.h": "c",
+        "stdio.h": "c",
+        "priority_queue.h": "c",
+        "stdlib.h": "c"
     }
 }

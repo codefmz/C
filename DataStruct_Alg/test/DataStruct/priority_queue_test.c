@@ -1,6 +1,6 @@
+#include "assert.h"
 #include "config_my.h"
 #include "priority_queue.h"
-#include "util.h"
 
 #ifdef USE_MY_PRIORITY_QUEUE
 int compareLarge(int a, int b)

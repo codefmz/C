@@ -1,3 +1,6 @@
+#ifndef __RINGBUFFER_H__
+#define __RINGBUFFER_H__
+
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -23,3 +26,5 @@ uint16_t RingBufferGet(RingBuffer* rb, uint8_t* ptr, uint16_t length);
 #ifdef __cplusplus
 }
 #endif
+
+#endif //__RINGBUFFER_H__

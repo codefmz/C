@@ -1,5 +1,5 @@
+#include "assert.h"
 #include "list.h"
-#include "util.h"
 #include <stdio.h>
 #include <string.h>
 

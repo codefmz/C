@@ -97,6 +97,9 @@ uint16_t RingBufferPut(RingBuffer* rb, uint8_t* ptr, uint16_t length)
         if (rb->bufferSize - rb->writeIndex >= length) {
             memcpy(&rb->bufferPtr[rb->writeIndex], ptr, length);
             rb->writeIndex = (rb->writeIndex + length) & (rb->bufferSize - 1);
+            if (rb->writeIndex == 0) {
+                rb->writeMirror = !rb->writeMirror;
+            }
             return length;
         }
         memcpy(&rb->bufferPtr[rb->writeIndex], ptr, rb->bufferSize - rb->writeIndex);
@@ -138,6 +141,9 @@ uint16_t RingBufferGet(RingBuffer* rb, uint8_t* ptr, uint16_t length)
         if (rb->bufferSize - rb->readIndex >= length) {
             memcpy(ptr, &rb->bufferPtr[rb->readIndex], length);
             rb->readIndex = (rb->readIndex + length) & (rb->bufferSize - 1);
+            if (rb->readIndex == 0) {
+                rb->readMirror = !rb->readMirror;
+            }
             return length;
         }
         memcpy(ptr, &rb->bufferPtr[rb->readIndex], rb->bufferSize - rb->readIndex);
