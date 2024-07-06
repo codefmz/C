@@ -1,15 +1,24 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(DataStruct VERSION 0.1.0)
 
-set(CMAKE_C_FLAGS "-g -std=c99 -Wunused-variable -pthread ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS
+    "-g"
+    "-std=c11"
+    "-Wunused"
+    "-variable"
+    "-pthread"
+)
+
+set(CMAKE_CXX_FLAGS
+    "-pthread"
+)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -pthread")
+
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/include/gtest
-    ${PROJECT_SOURCE_DIR}/include/util
 )
 
 add_subdirectory(src/DataStruct)
@@ -17,11 +26,14 @@ add_subdirectory(src/DataStruct)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 set(TestDir test/DataStruct)
+set(TEST_LIB
+    util_static
+    gtest_main
+    gtest
+)
 
 link_directories(
     ${PROJECT_SOURCE_DIR}/lib
-    ${PROJECT_SOURCE_DIR}/lib/util/
-    ${PROJECT_SOURCE_DIR}/lib/gtest/
 )
 
 enable_testing()
@@ -47,4 +59,11 @@ target_link_libraries(binarytree bt_static util_static gtest_main gtest)
 add_custom_command(TARGET binarytree
     PRE_BUILD
     COMMAND echo "compile binary tree test..."
+)
+
+add_executable(gccC ${PROJECT_SOURCE_DIR}/test/Other/gcc_compile.cc)
+target_link_libraries(gccC util_static gtest_main gtest)
+add_custom_command(TARGET gccC
+    PRE_BUILD
+    COMMAND echo "compile gccC test..."
 )
