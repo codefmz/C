@@ -18,7 +18,6 @@ void RingBufferInit(RingBuffer* rb, uint8_t* pool, uint16_t size)
 {
     rb->readMirror = 0;
     rb->writeMirror = 0;
-
     rb->bufferPtr = pool;
     rb->bufferSize = size;
 }

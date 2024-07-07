@@ -1,2 +1,3 @@
 add_subdirectory(DataStruct)
+add_subdirectory(Arithmetic)
 add_subdirectory(Other)

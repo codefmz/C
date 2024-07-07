@@ -3,6 +3,7 @@ project(DataStruct VERSION 0.1.0)
 
 set(CMAKE_C_FLAGS
     "-g"
+    "-o"
     "-std=c11"
     "-Wunused"
     "-variable"
@@ -10,7 +11,7 @@ set(CMAKE_C_FLAGS
 )
 
 set(CMAKE_CXX_FLAGS
-    "-pthread"
+    "-g -pthread"
 )
 
 set(CMAKE_CXX_STANDARD 14)
@@ -61,9 +62,18 @@ add_custom_command(TARGET binarytree
     COMMAND echo "compile binary tree test..."
 )
 
+#gcc_compile
 add_executable(gccC ${PROJECT_SOURCE_DIR}/test/Other/gcc_compile.cc)
 target_link_libraries(gccC util_static gtest_main gtest)
 add_custom_command(TARGET gccC
     PRE_BUILD
     COMMAND echo "compile gccC test..."
+)
+
+#monotonic_stack
+add_executable(monStack ${PROJECT_SOURCE_DIR}/test/Arithmetic/monotonic_stack.cc)
+target_link_libraries(monStack util_static gtest_main gtest)
+add_custom_command(TARGET gccC
+    PRE_BUILD
+    COMMAND echo "compile monStack test..."
 )
