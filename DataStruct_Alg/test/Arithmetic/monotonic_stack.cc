@@ -195,4 +195,43 @@ int* dailyTemperatures(int* temperatures, int temperaturesSize, int* returnSize)
     return returnArray;
 }
 
-// 力扣739， 503
+// 力扣503题
+int* nextGreaterElements(int* nums, int numsSize, int* returnSize)
+{
+    int size = (2 * numsSize - 1) * sizeof(int);
+    int* stack = (int*)malloc(size);
+    int stLen = -1;
+    memset(stack, 0, size);
+    int* retArray = (int*)malloc(numsSize * sizeof(int));
+    int i = 0, index = 0;
+    for (i = 0; i < numsSize; i++) {
+        retArray[i] = -1;
+    }
+
+    for (i = 0; i < (2 * numsSize - 1); ++i) {
+        index = i % numsSize;
+        while (stLen >= 0 && nums[stack[stLen]] < nums[index]) {
+            retArray[stack[stLen]] = nums[index];
+            stLen--;
+        }
+        stack[++stLen] = index;
+    }
+    *returnSize = numsSize;
+    free(stack);
+    return retArray;
+}
+
+TEST(MonStack, GreaterElements)
+{
+    int array[] = { 1, 2, 1 };
+    int arrayLen = 3;
+    const int expOutput[3] = { 2, -1, 2 }; /*预计结果*/
+    int returnSize = 0;
+    int i;
+    int* output = nextGreaterElements(array, arrayLen, &returnSize);
+
+    EXPECT_EQ(returnSize, arrayLen);
+    for (i = 0; i < arrayLen; ++i) {
+        EXPECT_EQ(output[i], expOutput[i]);
+    }
+}

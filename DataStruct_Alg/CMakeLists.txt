@@ -77,3 +77,11 @@ add_custom_command(TARGET gccC
     PRE_BUILD
     COMMAND echo "compile monStack test..."
 )
+
+#unset
+add_executable(unset ${PROJECT_SOURCE_DIR}/test/Arithmetic/unset.cc)
+target_link_libraries(unset util_static gtest_main gtest)
+add_custom_command(TARGET gccC
+    PRE_BUILD
+    COMMAND echo "compile unset test..."
+)
